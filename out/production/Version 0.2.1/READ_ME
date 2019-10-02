@@ -1,0 +1,45 @@
+Current Bugs
+
+- trees flick in and out when zoomed out and rotating
+- cannot change pitch in auto camera movements
+- sometimes aeroplane camera AI will return NaN when calculating yaw of camera after changing direction, need to create a check for this
+- randomize static entities has become inaccurate and is only applying general guidelines to the terrains SE's can spawn on
+- When loading models, cannot chose a terrain other then the grass for the models to work on
+  (I think this is because it takes to long for the computer to loop through and find possible locations)
+
+
+current inefficiencies / things to change
+
+- inefficent process calculating normals for the terrain as you call getpixel height to calc the height and
+then you call get pixel height again to calc the normal
+- blendmap must be changed in both loadTerrains and game loop for the blend map to properly update - change it so it just comes from one place
+
+
+Things to add
+
+- add ability to have more terrains the just red green, blue and black
+- rule that static entities cannot grow on gradients larger then a certain amount,
+- made the player fall if standing on a steep enough gradient
+- more models
+- day night cycle
+- water
+- Camera AI
+- AI models
+- collision detection
+
+- BoundingBox - need to add a indicie list along with the the float list of vertecies telling open gl how to draw the vertecies. Also need to not just have minX, maxX etx
+  need a vertex for all 8 points of bounding box. Then need to create a seperate renderer to be able to render these to the screen with potentially there own vertex and fragment shader'
+  to be able to change the look and feel of the boundingbox
+
+
+
+Performance
+
+Randomize static entities (SE = Static entity, HR = height restriction)
+- no SE can go on any texture but grass: 90 trees and 90 rocks in 2 milliseconds (800 max dist from origin)
+- no SE can go on any texture but grass and rocks have HR of 0 - 5 and trees have HR of 5 - 20: 90 trees and 90 rocks in 13 milliseconds (800 max dist from origin):
+
+
+
+Terrain generation
+ - 77 milliseconds to generate terrain
